@@ -1,0 +1,281 @@
+\documentclass{beamer}
+\title[Analysis] % (optional, only for long titles)
+{US airports delays and cancellation}
+\subtitle{Data Analysis and Classification}
+\author[Ivan Soto] % (optional, for multiple authors)
+{~Ivan Soto }
+\institute[Universities Here and There] % (optional)
+{
+  Introduction to Data Science\\
+  ITESM Campus Queretaro
+}
+\begin{document}
+	\begin{frame}
+		\frame{\titlepage}
+	\end{frame}
+	\begin{frame}
+		\frametitle{Table of Contents}
+		\tableofcontents[currentsection]
+	\end{frame}
+	\begin{frame}
+		\section[Section]{Problem statement}
+		\frametitle{Problem statement}
+		An aviation startup company (Avinalytics) is about to launch a new project, in which they want to understand and characterize the delays and cancellations to create an app capable to determine the likelihood of a flight in the US being cancelled.
+
+		First, they want to analyze historical flight data and identify patterns and characteristics for the different flight delays and cancellations, based on the date, the airline operators, the airports, route structures, region or state of the country, etc. The Avinalytics company hires you to perform this task.
+	\end{frame}
+	\begin{frame}
+		\section[Section]{Approach to a solution}
+		\frametitle{Approach to a solution}
+		For every observation in the flights dataset, the outcome of the flight is
+	    stated. This allows us to consider this problem as a supervised learning task,
+	    studied under the field of Machine Learning.
+	    To be more precise, there are two possible outcomes for each flight: cancelled
+	    or not cancelled.
+	\end{frame}
+	\begin{frame}
+		\section[Section]{Descriptive analysis}
+		\frametitle{Descriptive analysis}
+		\framesubtitle{Feature selection}
+		Out of the 110 features available for each observation in the data set, a subset
+	    of those were selected as representative features through manual selection.\newline
+		\begin{itemize}
+	            \item Quarter
+	            \item Month
+	            \item UniqueCarrier
+	            \item FlightNum
+	            \item OriginAirportID
+	            \item DestAirportID
+	            \item CRSDepTime
+	            \item DepDelay
+	            \item CRSArrTime
+	            \item ArrDelay
+	            \item Cancelled
+	            \item CancellationCode
+	            \item Distance
+	    \end{itemize}
+	\end{frame}
+	\begin{frame}
+		\frametitle{Descriptive analysis}
+		\framesubtitle{Categorical features}
+		\begin{figure}[h!]
+		  \includegraphics[scale=0.5]{graph/quarter_flights.png}
+		  \caption{Flights per year quarter}
+		  \label{fig:graph1}
+		\end{figure}\newline
+	\end{frame}
+	\begin{frame}
+		\frametitle{Descriptive analysis}
+		\framesubtitle{Categorical features}
+		\begin{figure}
+		  \includegraphics[scale=0.5]{graph/flightnums_freq.png}
+		  \caption{Frequency of flights}
+		  \label{fig:graph1}
+		\end{figure}\newline
+	\end{frame}
+	\begin{frame}
+		\frametitle{Descriptive analysis}
+		\framesubtitle{Non-categorical features}
+		\begin{figure}
+		  \includegraphics[scale=0.5]{graph/delay_flights.png}
+		  \caption{Delay on flights}
+		  \label{fig:graph1}
+		\end{figure}\newline
+	\end{frame}
+	\begin{frame}
+		\frametitle{Descriptive analysis}
+		\framesubtitle{Non-categorical features}
+		\begin{figure}
+	      \includegraphics[scale=0.5]{graph/dist_flights.png}
+	      \caption{Distance of flights}
+	      \label{fig:graph1}
+	    \end{figure}\newline
+	\end{frame}
+	\begin{frame}
+		\begin{figure}
+			\frametitle{Descriptive analysis}
+			\framesubtitle{Airports}
+		  \includegraphics[scale=0.55]{graph/distance_orig_dest.png}
+		  \caption{Mean distance between airports}
+		  \label{fig:graph1}
+		\end{figure}\newline
+	\end{frame}
+	\begin{frame}
+		\frametitle{Descriptive analysis}
+		\framesubtitle{How many are cancelled?}
+		\begin{figure}
+	      \includegraphics[scale=0.5]{graph/cancelled_flights.png}
+	      \caption{Cancelled flights}
+	      \label{fig:graph1}
+	    \end{figure}\newline
+	\end{frame}
+	\begin{frame}
+		\section[Section]{Exploratory analysis}
+		\frametitle{Exploratory analysis}
+		\framesubtitle{Correlations}
+		\begin{figure}
+	      \includegraphics[scale=0.3]{graph/corrmat.png}
+	      \caption{Heatmap on correlation matrix}
+	      \label{fig:graph1}
+	    \end{figure}
+	\end{frame}
+	\begin{frame}
+		\frametitle{Exploratory analysis}
+		\framesubtitle{Correlations}
+		\begin{figure}[L]
+			\frametitle{Exploratory analysis}
+		 	\framesubtitle{Correlations}
+	     	\includegraphics[scale=0.4]{graph/ratio_cancelled_total.png}
+			%    	\caption{Distance traveled (in miles) for each flight and its outcome (cancelled or not cancelled)}
+	     	\label{fig:graph1}
+	    \end{figure}\newline
+		\begin{figure}[R]
+			\frametitle{Exploratory analysis}
+		 	\framesubtitle{Correlations}
+	     	\includegraphics[scale=0.4]{graph/cancelled_carrier.png}
+			%    	\caption{Distance traveled (in miles) for each flight and its outcome (cancelled or not cancelled)}
+	     	\label{fig:graph1}
+	    \end{figure}\newline
+	\end{frame}
+	\begin{frame}
+		\begin{figure}
+			\frametitle{Exploratory analysis}
+			\framesubtitle{Correlations}
+		  \includegraphics[scale=0.15]{graph/scatplotmat.png}
+		  \caption{Scatterplot showing each variable against the others}
+		  \label{fig:graph1}
+		\end{figure}\newline
+	\end{frame}
+	\begin{frame}
+		\begin{figure}
+			\frametitle{Exploratory analysis}
+			\framesubtitle{Correlations}
+		  \includegraphics[scale=0.5]{graph/arrdelay_depdelay.png}
+		  \caption{Regression between arrival delay and departure delay}
+		  \label{fig:graph1}
+		\end{figure}\newline
+	\end{frame}
+	\begin{frame}
+		\begin{figure}
+			\frametitle{Exploratory analysis}
+			\framesubtitle{Correlations}
+		  \includegraphics[scale=0.1]{graph/distances_month.png}
+		  \caption{Distances for cancelled and not cancelled flights}
+		  \label{fig:graph1}
+		\end{figure}\newline
+	\end{frame}
+	\begin{frame}
+		\section[Section]{Classification}
+		\frametitle{Classification}
+		\framesubtitle{Dividing the data}
+		Several classifiers were trained using 85\% of the 40\% sample obtained out of the whole dataset. The reason is that, a classifier should never be trained using the complete dataset: it's going to fail at predicting unseen data (i.e. it's going to be overfitted).
+	\end{frame}
+	\begin{frame}
+		\frametitle{Classification}
+		\framesubtitle{Searching for the best hyperparameters}
+		Hyperparameters are not directly learnt from the classifier. Instead, they are set and tuning them according to the problem at hand can improve the results drastically. Depending on the classifier, the hyperparameters that are available for tuning may vary, and there are several approaches to finding the best hyperparameters. The most used algorithms are known as Grid Search and Randomized Search.
+	\end{frame}
+	\begin{frame}
+		\frametitle{Classification}
+		\framesubtitle{Cross-validation}
+			A cross-validated search for the best parameters is performed on both Grid Search and Randomized Search, thus avoiding the problem of overfitting. Cross-validation (also known as k-fold cross-validation) is a technique that divides the dataset into $k$ pieces. $k - 1$ pieces are used to train the classifier, and the remaining $kth$ piece is used to test the model.
+			\begin{figure}
+				\centering
+				\includegraphics[scale=0.5]{graph/10_fold_cv.png}
+			\end{figure}
+
+	\end{frame}
+	\begin{frame}
+		\frametitle{Classification}
+		\framesubtitle{K-nearest neighbors}
+		An observation for which we want to predict a class can be vectorized in $\mathbb{R}^{n}$ space. $k$ votes decide the class this trial belongs to.
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.5]{graph/knn.png}
+		\end{figure}
+	\end{frame}
+	\begin{frame}
+		\frametitle{Classification}
+		\framesubtitle{Stochastic Gradient Descent}
+		Gradient Descent is an optimization algorithm to find the local minima in a function $f(x)$. In the context of supervised learning, Gradient Descent is used to find the optimal coefficients of a vector $\vec{v}$ that minimizes a cost/loss function.
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.4]{graph/sgd.png}
+		\end{figure}
+	\end{frame}
+	\begin{frame}
+		\frametitle{Classification}
+		\framesubtitle{Logistic regression}
+		For each trial the probability that it belongs to a certain class is calculated using a logistic function (represented as {$f(x)=\frac{1}{1+e^{-x}}$}). L1 and L2 regularization can be used.
+		$$min_f \sum_{i=1}^{n} V(f(\hat x_i), \hat y_i) + \lambda R(f)$$
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.1]{graph/lr.png}
+		\end{figure}
+	\end{frame}
+	\begin{frame}
+		\frametitle{Classification}
+		\framesubtitle{Support Vector Machine}
+		A SVM (Support Vector Machine) builds a hyperplane $\vec{w}$ between the points so that it becomes a decision boundary that divides points into two classes. A trial is classified based on the side of the decision boundary it is in.
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.4]{graph/svm.jpg}
+		\end{figure}
+	\end{frame}
+	\begin{frame}
+		\frametitle{Classification}
+		\framesubtitle{Naive Bayes}
+		The idea behind the series of algorithms under "Naive Bayes methods" is to apply Bayes' theorem with a naive assumption that every pair of features are independent. Bayes' theorem is represented by the equation $$ P(y \mid X) = \frac{P(X \mid y) \, P(y)}{P(X)} $$
+	\end{frame}
+	\begin{frame}
+		\frametitle{Classification}
+		\framesubtitle{Random Forest}
+		Random Forest consists of several decision trees, each independent to every other, and every tree is learns from a random sample drawn with replacement, and at the end, the mode of the results (for the classifier version) is taken as the predicted class.
+		\begin{figure}
+			\centering
+			\includegraphics[scale=1]{graph/rf.png}
+		\end{figure}
+	\end{frame}
+	\begin{frame}
+		\frametitle{Classification}
+		\framesubtitle{Voting classifier}
+		Last but not least, another ensemble was built. Not out of decision trees this time, but out of the Logistic Regression, Random Forest and Bernoulli Naive Bayes classifiers. This is also known as a voting classifier: each classifier predicts a class for the trial, and soft voting took place to make a decision on the final class.
+	\end{frame}
+	\begin{frame}
+		\frametitle{Classification}
+		\framesubtitle{Visualization for accuracy scores}
+		\begin{figure}
+		  \includegraphics[scale=0.5]{graph/acc_scores_classifiers.png}
+		  \caption{Accuracy scores for the trained classifiers}
+		  \label{fig:graph10}
+		\end{figure}
+	\end{frame}
+	\begin{frame}
+		\frametitle{Classification}
+		\framesubtitle{Visualization for F1 scores}
+		\begin{figure}
+		  \includegraphics[scale=0.5]{graph/f1_scores_classifiers.png}
+		  \caption{F1 scores for the trained classifiers}
+		  \label{fig:graph11}
+		\end{figure}\newline
+	\end{frame}
+	\begin{frame}
+		\section[Section]{Conclusion}
+		\frametitle{Conclusion}
+	\end{frame}
+	\begin{frame}[shrink=30]
+		\section[Section]{Appendix and references}
+		\frametitle{Appendix and references}
+		The code for the descriptive, exploratory analysis and classification task can be found in this repository, along with the serialized models: \url{https://github.com/IvanAli/DataScienceITESM}\newline
+		\begin{itemize}
+	    \item On-time flights (2016). Document retrieved from: \url{http://www.transtats.bts.gov/DL\_SelectFields.asp?Table\_ID=236\&DB\_Short\_Name=On-Time}\newline
+	    \item Flight delay cause (2016). Document retrieved from: \url{http://www.transtats.bts.gov/ot\_delay/ot\_delaycause1.asp?type=21\&pn=1}\newline
+	    \item Flight Stats Global Cancellation and delays (2016). Document retrieved from:
+		\url{http://www.flightstats.com/go/Media/stats.do}\newline
+		\item Supervised learning -- scikit-learn 0.18.1 documentation. Document retrieved from:
+		\url{http://scikit-learn.org/stable/supervised_learning.html}\newline
+		\item Ensemble methods -- scikit-learn 0.18.1 documentation. Document retrieved from:
+		\url{http://scikit-learn.org/stable/modules/ensemble.html}
+		\end{itemize}
+	\end{frame}
+\end{document}
